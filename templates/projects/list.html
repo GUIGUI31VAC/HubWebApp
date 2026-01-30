@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Mes Projets{% endblock %}
+{% block content %}
+<h2>Mes projets</h2>
+<a href="{{ url_for('projects.create_project') }}">Créer un projet</a>
+<ul>
+    {% for project in projects %}
+    <li>
+        <strong>{{ project.name }}</strong> - {{ project.project_type }} - {{ project.status }}
+        [<a href="{{ url_for('projects.edit_project', id=project.id) }}">Modifier</a>]
+        [<a href="{{ url_for('projects.delete_project', id=project.id) }}">Supprimer</a>]
+    </li>
+    {% else %}
+    <li>Aucun projet pour l'instant</li>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('dashboard.dashboard_home') }}">Retour au dashboard</a>
+{% endblock %}
